@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ShopEase is a modern static e-commerce web application with cart management, product search, auth modals, and localStorage persistence."
+    />
+    <title>ShopEase - E-Commerce Web Application</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <nav class="navbar" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="ShopEase home">
+          <span class="brand-mark">S</span>
+          <span>ShopEase</span>
+        </a>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#products">Products</a>
+          <a href="#categories">Categories</a>
+          <a href="#featured">Featured</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="nav-actions">
+          <button class="icon-button theme-toggle" id="themeToggle" aria-label="Switch color theme">
+            <span id="themeIcon">☾</span>
+          </button>
+          <button class="ghost-button" id="loginOpen">Login</button>
+          <button class="primary-button" id="signupOpen">Sign Up</button>
+          <button class="cart-button" id="cartOpen" aria-label="Open shopping cart">
+            Cart
+            <span class="cart-count" id="cartCount">0</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content reveal">
+          <p class="eyebrow">Modern static shopping experience</p>
+          <h1>Shop smarter with a fast, responsive storefront.</h1>
+          <p class="hero-copy">
+            Browse curated products, manage a persistent cart, and try a simulated checkout flow built only with HTML, CSS, and Vanilla JavaScript.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button hero-button" href="#products">Start Shopping</a>
+            <a class="ghost-button hero-button" href="#featured">View Featured</a>
+          </div>
+          <div class="hero-stats" aria-label="Store highlights">
+            <span><strong>8</strong> Products</span>
+            <span><strong>5</strong> Categories</span>
+            <span><strong>100%</strong> Static</span>
+          </div>
+        </div>
+
+        <div class="hero-showcase reveal" aria-label="Featured ShopEase products">
+          <div class="showcase-card main">
+            <div class="showcase-glow"></div>
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 500'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%2366e4ff'/%3E%3Cstop offset='1' stop-color='%23a78bfa'/%3E%3C/linearGradient%3E%3Cfilter id='b'%3E%3CfeDropShadow dx='0' dy='18' stdDeviation='18' flood-color='%23000000' flood-opacity='.35'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='600' height='500' rx='42' fill='%23101a2d'/%3E%3Ccircle cx='455' cy='105' r='105' fill='%2366e4ff' opacity='.18'/%3E%3Ccircle cx='135' cy='385' r='120' fill='%23a78bfa' opacity='.16'/%3E%3Cg filter='url(%23b)'%3E%3Cpath d='M205 170h205l-22 185H227z' fill='url(%23a)'/%3E%3Cpath d='M236 164c12-65 132-65 144 0' fill='none' stroke='%23f8fafc' stroke-width='18' stroke-linecap='round'/%3E%3Cpath d='M242 218h132' stroke='%230f172a' stroke-width='18' stroke-linecap='round' opacity='.55'/%3E%3Cpath d='M253 274h110' stroke='%230f172a' stroke-width='18' stroke-linecap='round' opacity='.35'/%3E%3C/g%3E%3C/svg%3E"
+              alt="Illustrated shopping bag"
+            />
+          </div>
+          <div class="floating-card top">
+            <span>Free shipping</span>
+            <strong>$99+</strong>
+          </div>
+          <div class="floating-card bottom">
+            <span>Cart saved</span>
+            <strong>localStorage</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="categories-section section" id="categories">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Shop by category</p>
+          <h2>Find your next favorite item.</h2>
+        </div>
+        <div class="categories-grid" id="categoriesGrid" aria-label="Product categories"></div>
+      </section>
+
+      <section class="section products-section" id="products">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Product catalog</p>
+          <h2>Fresh picks for everyday shopping.</h2>
+        </div>
+
+        <div class="shop-toolbar reveal">
+          <label class="search-box" for="searchInput">
+            <span>Search</span>
+            <input id="searchInput" type="search" placeholder="Search products..." autocomplete="off" />
+          </label>
+          <select id="categoryFilter" aria-label="Filter products by category">
+            <option value="all">All Categories</option>
+          </select>
+          <select id="sortFilter" aria-label="Sort products">
+            <option value="featured">Featured</option>
+            <option value="low-high">Price: Low to High</option>
+            <option value="high-low">Price: High to Low</option>
+            <option value="rating">Top Rated</option>
+          </select>
+        </div>
+
+        <div class="product-grid" id="productGrid" aria-live="polite"></div>
+        <div class="empty-state hidden" id="noProducts">
+          <h3>No products found</h3>
+          <p>Try a different search term or category filter.</p>
+        </div>
+      </section>
+
+      <section class="section featured-section" id="featured">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Featured deal</p>
+          <h2>Built for project showcases.</h2>
+        </div>
+        <div class="featured-panel reveal">
+          <div>
+            <p class="sale-tag">Limited showcase offer</p>
+            <h3>Everything a beginner portfolio store needs.</h3>
+            <p>
+              ShopEase includes login validation, product search, cart persistence, modal previews, quantity controls, and a fake checkout flow.
+            </p>
+          </div>
+          <button class="primary-button" data-featured-add>Add Featured Bundle</button>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Static and deployable</p>
+          <h2>Ready for GitHub Pages.</h2>
+          <p>
+            Upload the files to your repository, enable GitHub Pages, and your storefront is live without servers, APIs, or build tools.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <aside class="cart-sidebar" id="cartSidebar" aria-label="Shopping cart" aria-hidden="true">
+      <div class="cart-header">
+        <div>
+          <p class="eyebrow">Your cart</p>
+          <h2>Shopping Bag</h2>
+        </div>
+        <button class="icon-button" id="cartClose" aria-label="Close cart">×</button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-empty" id="cartEmpty">
+        <div class="empty-icon">🛒</div>
+        <h3>Your cart is empty</h3>
+        <p>Add products to see them here.</p>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total</span>
+          <strong id="cartTotal">$0.00</strong>
+        </div>
+        <button class="primary-button checkout-button" id="checkoutButton">Fake Checkout</button>
+      </div>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <section class="modal auth-modal" id="authModal" aria-hidden="true" aria-labelledby="authTitle">
+      <div class="modal-card">
+        <button class="icon-button modal-close" data-close-modal aria-label="Close modal">×</button>
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-auth-mode="login">Login</button>
+          <button class="auth-tab" data-auth-mode="signup">Sign Up</button>
+        </div>
+        <h2 id="authTitle">Login to ShopEase</h2>
+        <form id="authForm" novalidate>
+          <label>
+            Full Name
+            <input type="text" id="nameInput" placeholder="Your name" />
+            <small class="error-message" id="nameError"></small>
+          </label>
+          <label>
+            Email
+            <input type="email" id="emailInput" placeholder="you@example.com" />
+            <small class="error-message" id="emailError"></small>
+          </label>
+          <label>
+            Password
+            <input type="password" id="passwordInput" placeholder="Minimum 6 characters" />
+            <small class="error-message" id="passwordError"></small>
+          </label>
+          <button class="primary-button full-button" type="submit" id="authSubmit">Login</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="modal product-modal" id="productModal" aria-hidden="true" aria-labelledby="productModalTitle">
+      <div class="modal-card product-modal-card" id="productModalContent"></div>
+    </section>
+
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
