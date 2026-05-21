@@ -56,13 +56,11 @@ https://gssriram9050.github.io/REPOSITORY-NAME/
 
 ## Live Demo
 
-Live demo placeholder:
+Live demo:
 
 ```text
-https://gssriram9050.github.io/ShopEase/
+https://gssriram9050.github.io/e-commerce/
 ```
-
-Replace `ShopEase` with your actual repository name if it is different.
 
 ## Screenshots
 
